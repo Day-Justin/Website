@@ -1,17 +1,23 @@
-import React, { Component } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
+import Homepage from "./Homepage";
+import Roomjoinpage from "./Roomjoinpage";
+import Createroompage from "./Createroompage";
+import  { BrowserRouter as Router, Routes, Route, Link, Redirect } from "react-router-dom";
 
-export default class App extends Component{
-    constructor(props){
-        super(props);
-    }
+// don't 4get 2 add routes to django url
 
-    render(){
-        return (<h1>Testing react code</h1>)
-    }
+export default function App() {
+    return (
+        <Router>
+            <Routes>
+                <Route exact path='/' element={<Homepage />} />
+                <Route path='/join' element={<Roomjoinpage />} />
+                <Route path='/create' element={<Createroompage />} />
+            </Routes>
+        </Router>);
 }
 
-const appDiv = document.getElementById("app");
-const root = createRoot(appDiv);
+const root = createRoot(document.getElementById("app"));
 
 root.render(<App />);
