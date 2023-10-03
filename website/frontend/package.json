@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack --mode development --watch",
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -20,6 +22,9 @@
     "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "@mui/material": "^5.14.10"
+    "@babel/plugin-transform-class-properties": "^7.22.5",
+    "@mui/icons-material": "^5.14.11",
+    "@mui/material": "^5.14.10",
+    "react-router-dom": "^6.16.0"
   }
 }

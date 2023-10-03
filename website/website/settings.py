@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'musicApi.apps.ApiConfig', # include ApiConfig class in api part of project
     'rest_framework', # allow for rest frame work
+    'frontend.apps.FrontendConfig', # frontend framework
 ]
 
 MIDDLEWARE = [
