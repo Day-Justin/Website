@@ -1,15 +1,7 @@
 import React, { Component } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Button from "@mui/material/Button";
-import Grid from "@mui/material/Grid";
-import Typography from "@mui/material/Typography";
-import TextField from "@mui/material/TextField";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Radio from "@mui/material/Radio";
-import RadioGroup from "@mui/material/RadioGroup";
-import { FormLabel } from "@mui/material";
+import { Button, Grid, Typography, TextField, FormHelperText, 
+    FormControlLabel, FormControl, Radio, RadioGroup, FormLabel } from "@mui/material";
 
 class Createroompage extends Component{
     defaultVotes = 2;

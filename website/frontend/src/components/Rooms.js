@@ -10,7 +10,7 @@ class Rooms extends Component{
             isHost: false,
         };
         const { roomCode } = this.props.params;
-        this.roomCode = roomCode
+        this.roomCode = roomCode;
         this.getRoom();
     }
     
