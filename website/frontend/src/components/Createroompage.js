@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
@@ -11,7 +11,7 @@ import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import { FormLabel } from "@mui/material";
 
-export default class Createroompage extends Component{
+class Createroompage extends Component{
     defaultVotes = 2;
 
     constructor(props){
@@ -48,7 +48,10 @@ export default class Createroompage extends Component{
                 guest_can_pause: this.state.guestCanPause,
             }),
         };
-        fetch('/api/create-room', requestOptions).then((response) => response.json()).then((data) => console.log(data));
+        fetch('/api/create-room', requestOptions
+        ).then((response) => response.json()
+        ).then((data) => this.props.history('/rooms/' + data.rm_code)
+        );
     }
 
     render(){
@@ -117,3 +120,10 @@ export default class Createroompage extends Component{
         );
     }
 }
+
+export default (props) => (
+    <Createroompage
+        {...props}
+        history={useNavigate()}
+    />
+);
