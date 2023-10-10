@@ -11,10 +11,9 @@ class Rooms extends Component{
         };
         const { roomCode } = this.props.params;
         this.roomCode = roomCode;
-        this.getRoom();
     }
     
-    getRoom(){
+    async componentDidMount(){
         fetch('/api/get-room?code=' + this.roomCode
         ).then((response) => response.json()
         ).then((data) => {
