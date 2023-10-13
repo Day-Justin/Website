@@ -10,8 +10,6 @@ import  { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 // don't 4get 2 add routes to django url
 
 export default function App(){
-
-
         return (
             <div>
             <Router>

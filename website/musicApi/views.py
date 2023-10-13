@@ -23,7 +23,7 @@ class CreateRoomView(APIView):
     serializer_class = CreateRoomSerializer
 
     def post(self, request, format=None):
-        if not self.request.session.exists(self.request.session.session_key):
+        if not self.request.session.exists(self.request.session.session_key): # session check
             self.request.session.create()
 
         serializer = self.serializer_class(data=request.data)
@@ -95,3 +95,16 @@ class UserInRoom(APIView):
         }
         
         return (JsonResponse(data, status=status.HTTP_200_OK))
+
+class LeaveRoom(APIView):
+    def post(self, request, format=None):
+        if 'rm_code' in self.request.session:
+            self.request.session.pop('rm_code')
+            host_id = self.request.session.session_key
+            room = Room.objects.filter(host=host_id)
+
+            if len(room) > 0: # delete room if host is the one that left
+                room = room[0]
+                room.delete()
+        
+        return Response({"Sucess"}, status=status.HTTP_200_OK)

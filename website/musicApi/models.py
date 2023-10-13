@@ -17,10 +17,10 @@ def gen_unique_code(): # unique room code generator that checks all room objects
 
 
 class Room(models.Model):
-    rm_code = models.CharField(max_length=8, default=gen_unique_code, unique=True)
-    host = models.CharField(max_length=50, unique=True)
-    guest_can_pause = models.BooleanField(null=False, default=False)
-    votes_to_skip = models.IntegerField(null=False, default=1)
-    created_at = models.DateTimeField(auto_now_add=True)
+    rm_code = models.CharField(max_length=8, default=gen_unique_code, unique=True) # unigue room code
+    host = models.CharField(max_length=50, unique=True) # host based on session id
+    guest_can_pause = models.BooleanField(null=False, default=False) # whether or not the guest will be able to pause music
+    votes_to_skip = models.IntegerField(null=False, default=1) # amount of guest votes to skip
+    created_at = models.DateTimeField(auto_now_add=True) # room creation date time
 
     

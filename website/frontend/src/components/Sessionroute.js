@@ -5,6 +5,7 @@ export default class Sessionroute extends Component{
     constructor(props){
         super(props);
         this.state=({roomCode: null});  
+        this.clearRoomCode = this.clearRoomCode.bind(this);
     };
 
     async componentDidMount() {
@@ -14,6 +15,16 @@ export default class Sessionroute extends Component{
           this.setState({roomCode: data.rm_code});
         });
     }
+    
+    clearRoomCode(){
+        this.setState({
+            roomCode: null
+        })
+    }
 
-    render(){return this.state.roomCode ? <Navigate to={`/rooms/${this.state.roomCode}`} /> : <Outlet /> ;};
+    render(){
+        return this.state.roomCode ? 
+            <Navigate replace to={`/rooms/${this.state.roomCode}`}  /> 
+            : <Outlet /> ;
+    };
 }
