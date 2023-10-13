@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Grid, Button, Typography } from '@mui/material';
+import Createroompage from './Createroompage';
 
 class Rooms extends Component{
     constructor(props){
@@ -9,10 +10,14 @@ class Rooms extends Component{
             votesToSkip: 2,
             guestCanPause: false,
             isHost: false,
+            viewSettings: false,
         };
         const { roomCode } = this.props.params;
         this.roomCode = roomCode;
         this.leaveButton = this.leaveButton.bind(this);
+        this.showSettings = this.showSettings.bind(this);
+        this.renderSettings = this.renderSettings.bind(this);
+        this.renderSettingsButton = this.renderSettingsButton.bind(this);
     }
     
     async componentDidMount(){
@@ -41,6 +46,35 @@ class Rooms extends Component{
         });
     }
 
+    showSettings(value) {
+        this.setState({
+            viewSettings: value
+        });
+    }
+
+    renderSettings(){ // using Createroompage to update because it has already has nice forms
+        return(
+            <Grid item xs={12} align="center"> 
+                <Createroompage 
+                    update={true} 
+                    votesToSkip={this.state.votesToSkip} 
+                    guestCanPause={this.state.guestCanPause} 
+                    roomCode={this.roomCode} 
+                    updateCallBack={() => {}} 
+                />
+            </Grid>
+    );}
+
+    renderSettingsButton(){
+        return(
+            <Grid item xs={12} align='center'>
+                <Button variant='contained' color='primary' onClick={() => this.showSettings(!this.state.viewSettings)}>
+                    Settings
+                </Button>
+            </Grid>
+        );
+    }
+
     render(){
         return(
             <Grid container spacing={1}>
@@ -57,11 +91,19 @@ class Rooms extends Component{
                         Votes to Skip: {this.state.votesToSkip.toString()}
                     </Typography>
 
-                    {this.state.isHost &&
-                    <Typography variant="h6" component="h6">
+                    {this.state.isHost ?
+                    (<Typography variant="h6" component="h6">
                         You're the Host 
-                    </Typography>}
+                    </Typography>) :
+                    (<Typography variant="h6" component="h6">
+                        Welcome Guest 
+                    </Typography>)
+                    }
                 </Grid>
+
+                {this.state.isHost ? this.renderSettingsButton() : null}
+                
+                {(this.state.isHost && this.state.viewSettings) && this.renderSettings()}
 
                 <Grid item xs={12} align="center">
                     <Button color="primary" variant="contained" onClick={this.leaveButton}>
