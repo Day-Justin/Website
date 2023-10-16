@@ -29,7 +29,7 @@ class Roomjoinpage extends Component{
             code: this.state.roomCode,
           }),
         };
-        fetch("/api/join-room", requestOptions)
+        fetch("/musicApi/join-room", requestOptions)
           .then((response) => {
             if (response.ok) {
               this.props.history(`/rooms/${this.state.roomCode}`);

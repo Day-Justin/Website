@@ -9,7 +9,7 @@ export default class Sessionroute extends Component{
     };
 
     async componentDidMount() {
-        fetch("/api/user-room")
+        fetch("/musicApi/user-room")
         .then((response) => response.json())
         .then((data) => {
           this.setState({roomCode: data.rm_code});

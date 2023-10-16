@@ -11,6 +11,7 @@ class Rooms extends Component{
             guestCanPause: false,
             isHost: false,
             viewSettings: false,
+            spotifyAuth: false,
         };
         const { roomCode } = this.props.params;
         this.roomCode = roomCode;
@@ -19,10 +20,11 @@ class Rooms extends Component{
         this.renderSettings = this.renderSettings.bind(this);
         this.renderSettingsButton = this.renderSettingsButton.bind(this);
         this.getRoomDetails = this.getRoomDetails.bind(this);
+        this.authSpotify = this.authSpotify.bind(this);
     }
     
     async componentDidMount(){
-        fetch('/api/get-room?code=' + this.roomCode
+        fetch('/musicApi/get-room?code=' + this.roomCode
         ).then((response) => {
             if (!response.ok){
                 this.props.history("/");
@@ -34,11 +36,34 @@ class Rooms extends Component{
                 guestCanPause: data.guest_can_pause,
                 isHost: data.is_host,
             });
+            if(this.state.isHost){
+                this.authSpotify();
+            }
+        });
+    }
+
+    authSpotify(){
+        fetch('/spotify/is-auth'
+        ).then((response) => response.json()
+        ).then((data) => {
+            this.setState({spotifyAuth: data.status});
+                if(!data.status){ 
+                    /*
+                    if not authenticated, call endpoint to redirect url to ask to authenticate
+                    and endpoint at uri will authenticate and create user creds in the backend
+                    and then redirect to this page where they will be auth and skip over this fxn
+                    */
+                   fetch('/spotify/get-auth')
+                   .then((response) => response.json())
+                   .then((data) => {
+                    window.location.replace(data.url);
+                   });
+                }
         });
     }
 
     getRoomDetails(){
-        fetch('/api/get-room?code=' + this.roomCode
+        fetch('/musicApi/get-room?code=' + this.roomCode
         ).then((response) => {
             if (!response.ok){
                 this.props.history("/");
@@ -58,7 +83,7 @@ class Rooms extends Component{
             method: "POST",
             headers: { "Content-Type" : "application/json" },
         };
-        fetch('/api/leave-room', requestOptions).then((_response) => {
+        fetch('/musicApi/leave-room', requestOptions).then((_response) => {
             this.props.history("/");
         });
     }

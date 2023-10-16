@@ -48,7 +48,7 @@ class Createroompage extends Component{
                 guest_can_pause: this.state.guestCanPause,
             }),
         };
-        fetch('/api/create-room', requestOptions
+        fetch('/musicApi/create-room', requestOptions
         ).then((response) => response.json()
         ).then((data) => this.props.history('/rooms/' + data.rm_code)
         );
@@ -64,7 +64,7 @@ class Createroompage extends Component{
                 guest_can_pause: this.state.guestCanPause,
             }),
         };
-        fetch('/api/update-room', requestOptions
+        fetch('/musicApi/update-room', requestOptions
         ).then((response) => {
             if(response.ok){
                 this.setState({msg : "Room Update Sucessful"})
