@@ -30,7 +30,7 @@ class Rooms extends Component{
         fetch('/musicApi/get-room?code=' + this.roomCode
         ).then((response) => {
             if (!response.ok){
-                this.props.history("/");
+                this.props.history("/music");
             }
             return response.json()}
         ).then((data) => {
@@ -39,18 +39,18 @@ class Rooms extends Component{
                 guestCanPause: data.guest_can_pause,
                 isHost: data.is_host,
             });
-            if(this.state.isHost){
-                this.authSpotify();
-            }
+            //if(this.state.isHost){
+            //    this.authSpotify();
+            //}
         });
-        this.interval =setInterval(this.getCurrentSong, 1000); 
+        //this.interval =setInterval(this.getCurrentSong, 1000); 
         // using polling method bc spotify dont have websockets
     }
-
+/*
     async componentWillUnmount(){
         clearInterval(this.interval)
     }
-
+*/
     authSpotify(){
         fetch('/spotify/is-auth'
         ).then((response) => response.json()
@@ -75,7 +75,7 @@ class Rooms extends Component{
         fetch('/musicApi/get-room?code=' + this.roomCode
         ).then((response) => {
             if (!response.ok){
-                this.props.history("/");
+                this.props.history("/music");
             }
             return response.json()}
         ).then((data) => {
@@ -109,7 +109,7 @@ class Rooms extends Component{
             headers: { "Content-Type" : "application/json" },
         };
         fetch('/musicApi/leave-room', requestOptions).then((_response) => {
-            this.props.history("/");
+            this.props.history("/music");
         });
     }
 
@@ -159,8 +159,6 @@ class Rooms extends Component{
                     </Typography>)
                     }
                 </Grid>
-                
-                <Musicplayer {...this.state.song} />
 
                 {this.state.isHost ? this.renderSettingsButton() : null}
                 
@@ -174,7 +172,8 @@ class Rooms extends Component{
 
             </Grid>
             /*
-                    
+                                    <Musicplayer {...this.state.song} />
+
                     <Typography variant="h6" component="h6">
                         Guests can pause? {this.state.guestCanPause.toString()}
                     </Typography>

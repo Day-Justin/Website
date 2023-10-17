@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
+import Musichome from './Musichome';
 
 export default class Sessionroute extends Component{
     constructor(props){
@@ -24,7 +25,7 @@ export default class Sessionroute extends Component{
 
     render(){
         return this.state.roomCode ? 
-            <Navigate replace to={`/rooms/${this.state.roomCode}`}  /> 
-            : <Outlet /> ;
+            <Navigate replace to={`/music/rooms/${this.state.roomCode}`}  /> 
+            : <Musichome /> ;
     };
 }

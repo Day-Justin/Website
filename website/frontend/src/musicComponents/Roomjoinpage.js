@@ -32,7 +32,7 @@ class Roomjoinpage extends Component{
         fetch("/musicApi/join-room", requestOptions)
           .then((response) => {
             if (response.ok) {
-              this.props.history(`/rooms/${this.state.roomCode}`);
+              this.props.history(`/music/rooms/${this.state.roomCode}`);
             } else {
               this.setState({ error: "Room not found." });
             }
@@ -69,7 +69,7 @@ class Roomjoinpage extends Component{
                     </div>
 
                     <div style={{padding: "20px"}}>
-                    <Button variant="contained" color="primary" to="/" component={Link}>
+                    <Button variant="contained" color="primary" to="/music" component={Link}>
                         Go Back
                     </Button>
                     </div>

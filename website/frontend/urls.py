@@ -6,8 +6,9 @@ from .views import index
 app_name = 'frontend'
 
 urlpatterns = [
-    path('', index, name=''),
-    path('join', index),
-    path('create', index),
-    path('rooms/<str:roomCode>', index)
+    path('', index),
+    path('music/', index, name=''),
+    path('music/join', index),
+    path('music/create', index),
+    path('music/rooms/<str:roomCode>', index)
 ]

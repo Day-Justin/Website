@@ -50,7 +50,7 @@ class Createroompage extends Component{
         };
         fetch('/musicApi/create-room', requestOptions
         ).then((response) => response.json()
-        ).then((data) => this.props.history('/rooms/' + data.rm_code)
+        ).then((data) => this.props.history('/music/rooms/' + data.rm_code)
         );
     }
 
@@ -155,7 +155,7 @@ class Createroompage extends Component{
 
                 {!update &&
                     (<div style={{padding: "20px"}}>
-                        <Button color="secondary" variant="contained" to="/" component={Link}> 
+                        <Button color="secondary" variant="contained" to="/music" component={Link}> 
                             Go Back
                         </Button>
                     </div>)
