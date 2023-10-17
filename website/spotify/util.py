@@ -101,7 +101,8 @@ def spotify_api_call(session_id, endpoint, query=False, post_=False, put_=False)
         response = post(BASE_URL + endpoint, headers=headers) 
     
     elif put_:
-        response = put(BASE_URL + endpoint, headers=headers) 
+        response = put(BASE_URL + endpoint, headers=headers)
+        print(json.loads(response.content)) 
     
     elif query:
         response = get(BASE_URL + endpoint + query, {}, headers=headers)
@@ -114,3 +115,15 @@ def spotify_api_call(session_id, endpoint, query=False, post_=False, put_=False)
         return json_response
     except:
         return {'Error': 'Bad Request'}
+    
+
+def pause_song(session_id):
+    return spotify_api_call(session_id, "me/player/pause", put_=True)
+    
+
+def play_song(session_id):
+    return spotify_api_call(session_id, "me/player/play", put_=True)
+
+
+def skip_song(session_id):
+    return spotify_api_call(session_id, "me/player/next", post_=True)

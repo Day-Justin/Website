@@ -137,15 +137,3 @@ class UpdateRoom(APIView):
             return Response(RoomSerializer(room).data, status=status.HTTP_200_OK)
 
         return Response({'Bad Request Data'}, status=status.HTTP_400_BAD_REQUEST)
-    
-class PauseSong(APIView):
-    def put(self, request, format=None):
-        room_code = self.request.session.get('rm_code')
-        room = Room.objects.filter(rm_code=room_code)[0]
-
-        if self.request.session.session_key == room.host or room.guest_can_pause:
-            pause_song(room.host)
-            
-            return Response({}, status=status.HTTP_202_ACCEPTED)
-        
-        return Response({}, status=status.HTTP_403_FORBIDDEN)
