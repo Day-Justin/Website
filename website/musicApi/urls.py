@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import RoomView, CreateRoomView, GetRoom, JoinRoom, UserInRoom, LeaveRoom, UpdateRoom
+from .views import *
 # don't forget to include in urls.py in main folder
 
 

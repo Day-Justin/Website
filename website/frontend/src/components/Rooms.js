@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Grid, Button, Typography } from '@mui/material';
 import Createroompage from './Createroompage';
+import Musicplayer from './Musicplayer';
 
 class Rooms extends Component{
     constructor(props){
@@ -12,6 +13,7 @@ class Rooms extends Component{
             isHost: false,
             viewSettings: false,
             spotifyAuth: false,
+            song: {}
         };
         const { roomCode } = this.props.params;
         this.roomCode = roomCode;
@@ -21,6 +23,7 @@ class Rooms extends Component{
         this.renderSettingsButton = this.renderSettingsButton.bind(this);
         this.getRoomDetails = this.getRoomDetails.bind(this);
         this.authSpotify = this.authSpotify.bind(this);
+        this.getCurrentSong = this.getCurrentSong.bind(this);
     }
     
     async componentDidMount(){
@@ -40,6 +43,12 @@ class Rooms extends Component{
                 this.authSpotify();
             }
         });
+        this.interval =setInterval(this.getCurrentSong, 1000); 
+        // using polling method bc spotify dont have websockets
+    }
+
+    async componentWillUnmount(){
+        clearInterval(this.interval)
     }
 
     authSpotify(){
@@ -75,6 +84,22 @@ class Rooms extends Component{
                 guestCanPause: data.guest_can_pause,
                 isHost: data.is_host,
             });
+        });
+    }
+
+    getCurrentSong(){
+        fetch('/spotify/current-song')
+        .then((response) => {
+            if (!response.ok){
+                return{};
+            }
+            else {
+                return response.json();
+            }
+        })
+        .then((data) => {
+            this.setState({song: data});
+            console.log(data);
         });
     }
 
@@ -119,20 +144,12 @@ class Rooms extends Component{
 
     render(){
         return(
-            <Grid container spacing={1}>
+            <Grid container spacing={1} alignItems="center">
                 <Grid item xs={12} align='center'>
                     <Typography variant="h3" component="h4">
                         This is Room {this.roomCode}
                     </Typography>
-
-                    <Typography variant="h6" component="h6">
-                        Guests can pause? {this.state.guestCanPause.toString()}
-                    </Typography>
-
-                    <Typography variant="h6" component="h6">
-                        Votes to Skip: {this.state.votesToSkip.toString()}
-                    </Typography>
-
+                    
                     {this.state.isHost ?
                     (<Typography variant="h6" component="h6">
                         You're the Host 
@@ -142,6 +159,8 @@ class Rooms extends Component{
                     </Typography>)
                     }
                 </Grid>
+                
+                <Musicplayer {...this.state.song} />
 
                 {this.state.isHost ? this.renderSettingsButton() : null}
                 
@@ -155,20 +174,14 @@ class Rooms extends Component{
 
             </Grid>
             /*
-            <div>
-                <h3>
-                    Room: {this.roomCode}
-                </h3>
-                <p>
-                    Votes: {this.state.votesToSkip.toString()}
-                </p>
-                <p>
-                    Guest: {this.state.guestCanPause.toString()}
-                </p>
-                <p>
-                    Host: {this.state.isHost.toString()}
-                </p>
-            </div>
+                    
+                    <Typography variant="h6" component="h6">
+                        Guests can pause? {this.state.guestCanPause.toString()}
+                    </Typography>
+
+                    <Typography variant="h6" component="h6">
+                        Votes to Skip: {this.state.votesToSkip.toString()}
+                    </Typography>
             */
         );
     }
