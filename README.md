@@ -6,4 +6,4 @@ To do:
 - add yt to it
 - general about and contact page
 - calculator page
-#Music put on hold given how spotify either needs premium or won't allow third parties to control music
+# Music put on hold given how spotify either needs premium or won't allow third parties to control music
