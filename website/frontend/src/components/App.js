@@ -2,6 +2,7 @@ import React, { Component }from "react";
 import Homepage from "./Homepage";
 import Roomjoinpage from "./Roomjoinpage";
 import Createroompage from "./Createroompage";
+import { Navbar } from "./Navbar";
 import Errorpage from "./Errorpage";
 import Rooms from "./Rooms";
 import Sessionroute from "./Sessionroute";
@@ -9,15 +10,11 @@ import  { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom"
 
 // don't 4get 2 add routes to django url
 
-export default function App(){
-        return (
-            <div>
+function App(){
+    return (
+        <div className="App">
             <Router>
-                <nav>
-                    <Link to='/'> Home </Link>
-                    <Link to='/join'>  Join </Link>
-                    <Link to='/create'> Create </Link>
-                </nav>
+                <Navbar />
                 <Routes>
                     <Route exact path='/' element={<Sessionroute />}>
                         <Route exact path='/' element={<Homepage />}/>
@@ -29,5 +26,8 @@ export default function App(){
                 </Routes>
                 <div> Footer </div>
             </Router>
-            </div>
-        );}
+        </div>
+    );
+}
+
+export default App;
