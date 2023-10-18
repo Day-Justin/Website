@@ -1,30 +1,94 @@
-import React from 'react';
+import React, {useState, useEffect } from 'react';
 import { Link, useMatch, useResolvedPath} from 'react-router-dom';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import HomeIcon from '@mui/icons-material/Home';
+import AddIcon from '@mui/icons-material/Add';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
 
-export const Navbar = () =>{
-return( 
-    <nav className="nav">
-        <Link to='/' className='siteName'>Justin's Site</Link>
-        <ul>
-                <CustomLink to="/">Home</CustomLink>
-                <CustomLink to="music/">Music</CustomLink>
-                <CustomLink to="music/create">Create</CustomLink>
-                <CustomLink to="music/join">Join</CustomLink>
-        </ul>
 
-    </nav>
-);
+function Navbar(){
+
+    return( 
+        <nav className="nav">
+            <Link to='/' className='siteName'>Justin's Site</Link>
+            <ul className='nav-ul'>
+                    <NavItem to="/" icon={HomeIcon} name="Home">
+                        <DropDownMenu>
+                            <NavItem to="music/create" icon={AddIcon} name="Create"></NavItem>
+                            <NavItem to="music/join" icon={MeetingRoomIcon} name="Join"></NavItem>
+                        </DropDownMenu>
+                    </NavItem>
+                    
+                    <NavItem to="music/" icon={MusicNoteIcon} name="Music">
+                        <DropDownMenu>
+                            <NavItem to="music/create" icon={AddIcon} name="Create"></NavItem>
+                            <NavItem to="music/join" icon={MeetingRoomIcon} name="Join"></NavItem>
+                        </DropDownMenu>
+                    </NavItem>
+
+            </ul>
+
+        </nav>
+    );
 }
 
-function CustomLink({ to, children, ...props }){
-    const resolvedPath = useResolvedPath(to)
-    const isActive = useMatch({path: resolvedPath.pathname, end: true})
+const NavIcon = (props) => {
+    const {icon: Icon} = props;
+    return(
+        <>
+        {Icon && <Icon />}
+        </>
+    );
+}
+
+function NavItem({ to, icon, name, children,  ...props }){
+    const [open, setOpen] = useState(false);  // state for dropdown 
+    const resolvedPath = useResolvedPath(to);
+    const isActive = useMatch({path: resolvedPath.pathname, end: true});
 
     return(
-        <li className={isActive ? "active" : ""}>
-            <Link to={to} {...props}>
-                {children}
+        <li id={isActive ? "active" : ""} 
+        className="nav-item"
+        onMouseEnter={() => setOpen(!open)}
+        onMouseLeave={() => setOpen(!open)}        
+        >
+            <Link to={to} 
+            {...props} 
+            className='icon-button' >
+                <NavIcon icon={icon} />{name}
+
+                {open && children}
             </Link>
         </li>
     );
 }
+
+function DropDownMenu(props){
+    function DropDownItem(comp){
+        return(
+            <div className="menu-item">
+                {comp}
+            </div>
+        );
+    }
+
+    const children = React.Children.toArray(props.children);
+    const drop = [];
+    
+    if(children){
+        for(var i=0; i<children.length; i++){
+            drop.push(DropDownItem(children[i]));
+        }
+    }
+    
+    return(
+        <div className='dropdown'>
+            {drop}
+        </div>
+    );
+}
+
+
+
+
+export default Navbar;

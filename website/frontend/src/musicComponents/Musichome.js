@@ -29,6 +29,13 @@ export default class Musichome extends Component{
                     </ButtonGroup>
                 </Grid>
 
+                <Grid item xs={12} align="center">
+                    <Typography variant="h5" component="h5">
+                        Disclaimer!
+                        Development of music playing functions have halted
+                    </Typography>
+                </Grid>
+
             </Grid>
         );
     }

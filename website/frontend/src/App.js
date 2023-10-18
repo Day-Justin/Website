@@ -3,7 +3,7 @@ import Musichome from "./musicComponents/Musichome";
 import Roomjoinpage from "./musicComponents/Roomjoinpage";
 import Createroompage from "./musicComponents/Createroompage";
 import Homepage from "./About/Homepage";
-import { Navbar } from "./Navbar";
+import Navbar from "./Navbar";
 import Errorpage from "./Errorpage";
 import Rooms from "./musicComponents/Rooms";
 import Sessionroute from "./musicComponents/Sessionroute";
