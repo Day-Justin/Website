@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import Errorpage from "./Errorpage";
 import Rooms from "./musicComponents/Rooms";
 import Sessionroute from "./musicComponents/Sessionroute";
+import Footer from "./Footer";
 import  { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 // don't 4get 2 add routes to django url
@@ -26,7 +27,7 @@ function App(){
                     <Route path='music/rooms/:roomCode' element={<Rooms />} />   
                     <Route path='*' element={<Errorpage />} />
                 </Routes>
-                <div> Footer </div>
+                <Footer />
             </Router>
         </div>
     );
