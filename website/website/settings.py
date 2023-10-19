@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'musicApi.apps.ApiConfig', # include ApiConfig class in api part of project
     'rest_framework', # allow for rest frame work
     'frontend.apps.FrontendConfig', # frontend framework
-    'spotify.apps.SpotifyConfig'
+    'spotify.apps.SpotifyConfig',
+    'billing.apps.BillingConfig'
 ]
 
 MIDDLEWARE = [
