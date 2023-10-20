@@ -64,26 +64,17 @@ function NavItem({ to, icon, name, children,  ...props }){
 }
 
 function DropDownMenu(props){
-    function DropDownItem(comp){
-        return(
-            <div className="menu-item">
-                {comp}
-            </div>
-        );
-    }
-
     const children = React.Children.toArray(props.children);
-    const drop = [];
-    
-    if(children){
-        for(var i=0; i<children.length; i++){
-            drop.push(DropDownItem(children[i]));
-        }
-    }
     
     return(
         <div className='dropdown'>
-            {drop}
+            {children.map((child, key) => {
+                return(
+                    <div className="menu-item" key={key}>
+                        {child}
+                    </div>
+                );
+            })}
         </div>
     );
 }
