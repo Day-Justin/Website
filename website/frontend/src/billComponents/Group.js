@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { BillContext } from "./Bill";
 import { useFormReset } from "../Customhooks/useFormReset"; // custom hook to reset forms to inital value
 import { 
@@ -12,6 +12,7 @@ import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 function Group(){
     const { group, setGroup } = useContext(BillContext);
+    const [add, setAdd] = useState(0);
     const [name, nameUpdate, nameReset] = useFormReset();
 
     const addMember = (member) =>{
@@ -19,19 +20,20 @@ function Group(){
     }
 
     const handleAdd = () =>{
-        var id = group.length + 1;
-        var member = {
-            id: id,
+        const member = {
+            id: add + 1,
             name: name,
             cost: 0,
         }
 
         addMember(member);
+        setAdd(add + 1);
         nameReset();
     }
 
     const handleDelete = (member) =>{
         setGroup(group.filter((mem) => mem.id !== member.id));
+        console.log(group);
     }
 
     return(
@@ -54,14 +56,14 @@ function Group(){
                 
             </Grid>
             
-            <Grid item xs={12}>
-                <Stack direction="row" spacing={1}>
+            <Grid item xs={12} >
+                <Stack direction="row" spacing={1} useFlexGap flexWrap="wrap">
                     {group.map((member, key) => {
                         return(
                             <Chip label={member.name} 
                                 key={key}
                                 variant="outlined" 
-                                onDelete={() => handleDelete(member)} />
+                                onClick={() => handleDelete(member)} />
                         );
                     })}
                 </Stack>

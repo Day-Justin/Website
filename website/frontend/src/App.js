@@ -24,11 +24,11 @@ function App(){
     });
 
     return (
-        <div className="App">
+        <div className="app">
             <QueryClientProvider client={queryClient}>
                 <Router>
                     <Navbar />
-                    <Routes>
+                    <Routes className="main"> 
                         <Route exact path='/' element={<Homepage />} />
                         <Route exact path='bill/' element={<Bill />} />
                         <Route exact path='music/' element={<Sessionroute />}>
