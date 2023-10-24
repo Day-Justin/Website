@@ -3,6 +3,7 @@ import Musichome from "./musicComponents/Musichome";
 import Roomjoinpage from "./musicComponents/Roomjoinpage";
 import Createroompage from "./musicComponents/Createroompage";
 import Homepage from "./About/Homepage";
+import Bill from "./billComponents/Bill";
 import Navbar from "./Navbar";
 import Errorpage from "./Errorpage";
 import Rooms from "./musicComponents/Rooms";
@@ -29,6 +30,7 @@ function App(){
                     <Navbar />
                     <Routes>
                         <Route exact path='/' element={<Homepage />} />
+                        <Route exact path='bill/' element={<Bill />} />
                         <Route exact path='music/' element={<Sessionroute />}>
                             <Route exact path='music/' element={<Musichome />} />
                         </Route>

@@ -4,6 +4,7 @@ import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 
 function Navbar(){
@@ -19,6 +20,8 @@ function Navbar(){
                         </DropDownMenu>
                     </NavItem>
                     
+                    <NavItem to="bill/" icon={ReceiptIcon} name="Split Bill" />
+
                     <NavItem to="music/" icon={MusicNoteIcon} name="Music">
                         <DropDownMenu>
                             <NavItem to="music/create" icon={AddIcon} name="Create"></NavItem>
