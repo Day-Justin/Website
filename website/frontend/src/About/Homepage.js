@@ -4,7 +4,7 @@ import { useGetApi } from '../Customhooks/useGetApi';
 
 function Homepage(){
     const [catFact, toggle] = useToggle();
-    const [catData, catRefetch] = useGetApi('https://catfact.ninja/fact');
+    const [catData, catRefetch] = useGetApi('https://catfact.ninja/fact', ["cat"]);
 
     return(
         <div>

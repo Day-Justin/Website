@@ -11,7 +11,7 @@ import {
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 
 function Group(){
-    const { group, setGroup } = useContext(BillContext);
+    const { group, setGroup, items, setItems} = useContext(BillContext);
     const [add, setAdd] = useState(0);
     const [name, nameUpdate, nameReset] = useFormReset();
 
@@ -33,7 +33,11 @@ function Group(){
 
     const handleDelete = (member) =>{
         setGroup(group.filter((mem) => mem.id !== member.id));
-        console.log(group);
+        var newItems = items;
+        newItems.map((item) => {
+            item.members= item.members.filter((mem) => mem !== member.id)
+        })
+        setItems(newItems)
     }
 
     return(
@@ -63,7 +67,7 @@ function Group(){
                             <Chip label={member.name} 
                                 key={key}
                                 variant="outlined" 
-                                onClick={() => handleDelete(member)} />
+                                onDelete={() => handleDelete(member)} />
                         );
                     })}
                 </Stack>

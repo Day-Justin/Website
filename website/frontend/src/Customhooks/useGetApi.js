@@ -1,11 +1,11 @@
 import { useQuery } from '@tanstack/react-query';
 
-export const useGetApi = (url) =>{
+export const useGetApi = (url, key) =>{
     const { 
         data, 
         refetch,
     } = useQuery({
-        queryKey: ["cat"], 
+        queryKey: key, 
         queryFn: () => fetch(url)
         .then((res) => res.json(),),
     });
