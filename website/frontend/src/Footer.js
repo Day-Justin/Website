@@ -4,6 +4,10 @@ import GitHubIcon from '@mui/icons-material/Github';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailOutlineIcon from '@mui/icons-material/MailOutline';
 import PhoneIcon from '@mui/icons-material/Phone';
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
+import ReceiptIcon from '@mui/icons-material/Receipt';
+import FaceIcon from '@mui/icons-material/Face';
+import ArticleIcon from '@mui/icons-material/Article';
 import { Link } from 'react-router-dom';
 
 function Footer(){
@@ -23,12 +27,14 @@ function Footer(){
 
                     <Typography color="white" display="flex" justifyContent="center">
                         <List>
-                            <ListItemButton to="#" component={Link}>
-                                <ListItemText primary="Info" />
+                            <ListItemButton to="about/" component={Link}>
+                                <ListItemText primary="About" />
+                                <FaceIcon />
                             </ListItemButton>
 
-                            <ListItemButton to="#" component={Link}>
+                            <ListItemButton to="resume/" component={Link}>
                                 <ListItemText primary="Resume" />
+                                <ArticleIcon />
                             </ListItemButton>
                         </List>
                     </Typography>
@@ -67,10 +73,12 @@ function Footer(){
                         <List>
                             <ListItemButton to="/music" component={Link}>
                                 <ListItemText primary="Music" />
+                                <MusicNoteIcon color="primary"/>
                             </ListItemButton>
 
-                            <ListItemButton to="#" component={Link}>
-                                <ListItemText primary="Billing" />
+                            <ListItemButton to="bill/" component={Link}>
+                                <ListItemText primary="Split Bill" />
+                                <ReceiptIcon />
                             </ListItemButton>
                         </List>
                     </Typography>
@@ -83,14 +91,14 @@ function Footer(){
 
                     <Typography color="white" display="flex" justifyContent="center">
                         <List>
-                            <ListItemButton href="gitHub" component="a">
+                            <ListItemButton href="https://github.com/Day-Justin" target="_blank" rel="noopener noreferrer" component="a">
                                 <ListItemText primary="gitHub" />
                                 <ListItemIcon>
                                     <GitHubIcon />
                                 </ListItemIcon>
                             </ListItemButton>
 
-                            <ListItemButton href="LinkedIn" component="a">
+                            <ListItemButton href="https://www.linkedin.com/in/justin-day-192605164/" target="_blank" rel="noopener noreferrer" component="a">
                                 <ListItemText primary="LinkdIn" />
                                 <ListItemIcon>
                                     <LinkedInIcon />

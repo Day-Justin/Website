@@ -1,9 +1,11 @@
-import React, {useState, useEffect } from 'react';
+import React, {useState } from 'react';
 import { Link, useMatch, useResolvedPath} from 'react-router-dom';
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import HomeIcon from '@mui/icons-material/Home';
 import AddIcon from '@mui/icons-material/Add';
 import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import FaceIcon from '@mui/icons-material/Face';
+import ArticleIcon from '@mui/icons-material/Article';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 
 
@@ -15,14 +17,14 @@ function Navbar(){
             <ul className='nav-ul'>
                     <NavItem to="/" icon={HomeIcon} name="Home">
                         <DropDownMenu>
-                            <NavItem to="music/create" icon={AddIcon} name="Create"></NavItem>
-                            <NavItem to="music/join" icon={MeetingRoomIcon} name="Join"></NavItem>
+                            <NavItem to="about" icon={FaceIcon} name="About"></NavItem>
+                            <NavItem to="resume" icon={ArticleIcon} name="Resume"></NavItem>
                         </DropDownMenu>
                     </NavItem>
                     
-                    <NavItem to="bill/" icon={ReceiptIcon} name="Split Bill" />
+                    <NavItem to="bill" icon={ReceiptIcon} name="Split Bill" />
 
-                    <NavItem to="music/" icon={MusicNoteIcon} name="Music">
+                    <NavItem to="music" icon={MusicNoteIcon} name="Music">
                         <DropDownMenu>
                             <NavItem to="music/create" icon={AddIcon} name="Create"></NavItem>
                             <NavItem to="music/join" icon={MeetingRoomIcon} name="Join"></NavItem>

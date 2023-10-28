@@ -1,4 +1,4 @@
-import React, { Component }from "react";
+import React from "react";
 import Musichome from "./musicComponents/Musichome";
 import Roomjoinpage from "./musicComponents/Roomjoinpage";
 import Createroompage from "./musicComponents/Createroompage";
@@ -8,8 +8,10 @@ import Navbar from "./Navbar";
 import Errorpage from "./Errorpage";
 import Rooms from "./musicComponents/Rooms";
 import Sessionroute from "./musicComponents/Sessionroute";
+import About from "./About/About";
+import Resume from "./About/Resume";
 import Footer from "./Footer";
-import  { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import  { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider }from '@tanstack/react-query';
 
 // don't 4get 2 add routes to django url
@@ -30,6 +32,8 @@ function App(){
                     <Navbar />
                     <Routes className="main"> 
                         <Route exact path='/' element={<Homepage />} />
+                        <Route exact path='about/' element={<About />} />
+                        <Route exact path='resume/' element={<Resume />} />
                         <Route exact path='bill/' element={<Bill />} />
                         <Route exact path='music/' element={<Sessionroute />}>
                             <Route exact path='music/' element={<Musichome />} />

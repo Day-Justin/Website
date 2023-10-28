@@ -31,8 +31,9 @@ export default class Musichome extends Component{
 
                 <Grid item xs={12} align="center">
                     <Typography variant="h5" component="h5">
-                        Disclaimer!
-                        Development of music playing functions have halted
+                        <div>Disclaimer!</div>
+                        <div>Development of music playing functions have halted.</div>
+                        <div>However, room creation works perfectly fine.</div>
                     </Typography>
                 </Grid>
 

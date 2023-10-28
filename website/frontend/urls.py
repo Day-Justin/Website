@@ -7,6 +7,8 @@ app_name = 'frontend'
 
 urlpatterns = [
     path('', index),
+    path('about/', index),
+    path('resume/', index),
     path('bill/', index),
     path('music/', index, name=''),
     path('music/join', index),
