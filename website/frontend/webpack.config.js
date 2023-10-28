@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, "./static/frontend"),
     filename: "[name].js",
+    assetModuleFilename: 'images/[hash][ext][query]'
   },
   module: {
     rules: [
@@ -15,6 +16,14 @@ module.exports = {
         use: {
           loader: "babel-loader",
         },
+      },
+      {
+        test: /\.(png|svg|jpe?g|jpeg|gif|pdf)$/i,
+        type: 'asset/resource'
+      },
+     {
+      test: /\.css$/,
+      use: ['style-loader', 'css-loader'],
       },
     ],
   },
