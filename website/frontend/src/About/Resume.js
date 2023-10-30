@@ -16,7 +16,16 @@ function Resume(){
     return(
         <Grid container alignItems="center" justifyContent="center">
         <Grid item xs={12} align="center">
-                <Button color='primary' variant='contained'>yo where is my button???</Button>
+                <Button 
+                    color='primary' 
+                    variant='contained'
+                    href={resume}
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    download
+                >
+                    Download PDF
+                </Button>
             </Grid>
  
 
