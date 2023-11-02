@@ -11,9 +11,6 @@ package-lock.json
 # ignore node_modules
 node_modules/
 
-# ignore inits
-__init__.py
-
 # ignore the db
 db.sqlite3
 
