@@ -92,7 +92,7 @@ function Fooditem(){
                 variant="outlined" 
                 value={name}
                 onChange={(ev) => nameUpdate(ev.target.value)}
-                onKeyDown={((ev) => {(ev.key === "Enter" && name !== "" && price >= 0) ? handleAdd() : undefined})}
+                onKeyDown={((ev) => {(ev.key === "Enter" && name !== "" && price > 0) ? handleAdd() : undefined})}
                 />
                 <TextField 
                 id="filled-basic" 
