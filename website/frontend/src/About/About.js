@@ -43,10 +43,6 @@ function About(){
                             My gitHub with repo of classwork and personal projects: 
                             <Link href="https://github.com/Day-Justin" target="_blank" rel="noopener noreferrer" underline='hover'> GitHub</Link>
                         </p>
-                        <p>
-                            Check out the source code for this website:
-                            <Link href="https://github.com/Day-Justin/Website" target="_blank" rel="noopener noreferrer" underline='hover'> Source code</Link>
-                        </p>
                     </Typography>
                     <Button to="/resume" component={ link } variant="outlined">See My Resume</Button>
                 </Grid>

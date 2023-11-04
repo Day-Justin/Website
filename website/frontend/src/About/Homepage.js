@@ -36,6 +36,11 @@ function Homepage(){
                     <Typography component="h6" variant='h6'>
                         <p>Info on me:  <Link to="about/" component={ link } underline="hover">  About Me</Link></p>
                         <p> My resume:  <Link to="resume/" component={ link } underline="hover">  My Resume</Link> </p>
+                        <p>
+                            Check out the source code for this website:
+                            <Link href="https://github.com/Day-Justin/Website" target="_blank" rel="noopener noreferrer" underline='hover'> Source code</Link>
+                        </p>
+
                     </Typography>
 
                 </Grid>
