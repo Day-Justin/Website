@@ -24,5 +24,5 @@ urlpatterns = [
     path('musicApi/', include('musicApi.urls')),
     path('', include('frontend.urls')),
     path('spotify/', include('spotify.urls')),
-    path('bill', include('billing.urls'))
+    path('points', include('points.urls'))
 ]

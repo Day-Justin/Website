@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'rest_framework', # allow for rest frame work
     'frontend.apps.FrontendConfig', # frontend framework
     'spotify.apps.SpotifyConfig',
-    'billing.apps.BillingConfig'
+    'points.apps.BillingConfig'
 ]
 
 MIDDLEWARE = [
